@@ -8,7 +8,7 @@ const IncomingCallScreen = ({ caller, onAccept, onDecline }) => {
     <View style={styles.container}>
       <StatusBar barStyle="light-content" />
       <LinearGradient
-        colors={['#000000', '#1a1a1a', '#2b2b2b']}
+        colors={['#4c669f', '#3b5998', '#192f6a']}
         style={styles.gradient}
       >
         <View style={styles.callerInfo}>
@@ -16,31 +16,21 @@ const IncomingCallScreen = ({ caller, onAccept, onDecline }) => {
             <Image source={{ uri: caller.image }} style={styles.callerImage} />
           ) : (
             <View style={styles.callerImagePlaceholder}>
-              <Text style={styles.callerImageText}>{caller.name.charAt(0)}</Text>
+              <Text style={styles.callerImagePlaceholderText}>{caller.name.charAt(0)}</Text>
             </View>
           )}
           <Text style={styles.callerName}>{caller.name}</Text>
           <Text style={styles.callerNumber}>{caller.number}</Text>
           <Text style={styles.callStatus}>Incoming call</Text>
         </View>
-        <View style={styles.callActions}>
-          <TouchableOpacity style={styles.actionButton} onPress={onDecline}>
-            <LinearGradient
-              colors={['#ff4444', '#cc0000']}
-              style={[styles.actionIcon, styles.declineIcon]}
-            >
-              <Text style={styles.actionIconText}>✕</Text>
-            </LinearGradient>
-            <Text style={styles.actionText}>Decline</Text>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity style={styles.declineButton} onPress={onDecline}>
+            <Text style={styles.buttonIcon}>✕</Text>
+            <Text style={styles.buttonText}>Decline</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.actionButton} onPress={onAccept}>
-            <LinearGradient
-              colors={['#00C853', '#009624']}
-              style={[styles.actionIcon, styles.acceptIcon]}
-            >
-              <Text style={styles.actionIconText}>✓</Text>
-            </LinearGradient>
-            <Text style={styles.actionText}>Accept</Text>
+          <TouchableOpacity style={styles.acceptButton} onPress={onAccept}>
+            <Text style={styles.buttonIcon}>✓</Text>
+            <Text style={styles.buttonText}>Accept</Text>
           </TouchableOpacity>
         </View>
       </LinearGradient>
@@ -76,56 +66,50 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.3)',
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: hp('2%'),
   },
-  callerImageText: {
-    fontSize: wp('20%'),
+  callerImagePlaceholderText: {
+    fontSize: wp('15%'),
     color: '#ffffff',
   },
   callerName: {
-    fontSize: wp('8%'),
+    fontSize: wp('6%'),
     fontWeight: 'bold',
     color: '#ffffff',
     marginBottom: hp('1%'),
   },
   callerNumber: {
-    fontSize: wp('5%'),
+    fontSize: wp('4%'),
     color: '#ffffff',
-    marginBottom: hp('2%'),
+    marginBottom: hp('1%'),
   },
   callStatus: {
     fontSize: wp('4%'),
     color: '#ffffff',
     opacity: 0.8,
   },
-  callActions: {
+  buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     width: '100%',
-    marginBottom: hp('10%'),
   },
-  actionButton: {
+  declineButton: {
+    backgroundColor: '#ff3b30',
+    borderRadius: wp('15%'),
+    padding: wp('5%'),
     alignItems: 'center',
   },
-  actionIcon: {
-    width: wp('20%'),
-    height: wp('20%'),
-    borderRadius: wp('10%'),
-    justifyContent: 'center',
+  acceptButton: {
+    backgroundColor: '#34c759',
+    borderRadius: wp('15%'),
+    padding: wp('5%'),
     alignItems: 'center',
-    marginBottom: hp('1%'),
   },
-  declineIcon: {
-    backgroundColor: '#ff4444',
-  },
-  acceptIcon: {
-    backgroundColor: '#00C853',
-  },
-  actionIconText: {
+  buttonIcon: {
     fontSize: wp('10%'),
     color: '#ffffff',
+    marginBottom: hp('1%'),
   },
-  actionText: {
+  buttonText: {
     fontSize: wp('4%'),
     color: '#ffffff',
   },
